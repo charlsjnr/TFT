@@ -1,0 +1,15 @@
+body {
+    background-color: pink;
+    color: blue;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0%;
+}
+
+header {
+    margin: 0%;
+    background-color: aqua;
+}
+
+#header{
+    margin: auto;
+}
