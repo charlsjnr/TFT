@@ -7,9 +7,23 @@ body {
 
 header {
     margin: 0%;
-    background-color: aqua;
+    background-color: #00ffff;
+    height: 75px;
+    position: sticky;
+    top: 0;
 }
 
 #header{
     margin: auto;
+}
+
+nav{
+    background-color: blueviolet;
+    height: 45px;
+    position: sticky;
+    top: 75px;
+}
+
+#nav{
+    margin:auto;
 }
