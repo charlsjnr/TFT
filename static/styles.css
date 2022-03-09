@@ -3,6 +3,9 @@ body {
     color: blue;
     font-family: 'Courier New', Courier, monospace;
     margin: 0%;
+    background-image: url("images/tftbackground.jpg");
+    background-size: cover;
+    height: 1000px;
 }
 
 header {
@@ -40,8 +43,15 @@ nav{
     left: 0;
 }
 
-#image2{
+footer{
+    height: 80px;
+    text-align: center;
+    bottom: -170px;
     position: absolute;
-    right: 0;
-    top: 120px;
+    background-color: black;
+    width: 100%;
+}
+
+#footer{
+    margin: auto;
 }
