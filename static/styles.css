@@ -15,7 +15,7 @@ body {
 
 header {
     margin: 0%;
-    background-color: #4c3e79;
+    background-color: rgba(76, 62, 121, 0.75);
     height: 75px;
     position: sticky;
     top: 0;
@@ -26,7 +26,7 @@ header {
 }
 
 nav{
-    background-color: #7964a7;
+    background-color: rgba(121, 100, 167, 0.6); 
     height: 45px;
     position: sticky;
     top: 75px;
@@ -46,12 +46,27 @@ nav{
     text-shadow: 2px 2px 0 #ffffff, 1px 1px 0 #ffffff;;
 }
 
+#titlebut{
+    text-decoration: none;
+    margin-left: 10px;
+    font-family: LeagueBold;
+    font-size: 300%;
+    color: #d09c3c;
+    text-shadow: 1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+    transition: 0.4s;
+}
+
+#titlebut:hover{
+    font-size: 305%;
+    text-shadow: 1px 1px 0 #000000, 1px 1px 0 #000000;
+}
+
 #homebut{
     position: absolute;
     top: 575px;
     left: 900px;
     font-family: LeagueBold;
-    color: #ffffff;
+    color: #e4d5c7;
     font-size: 120%;
     text-decoration: none;
     background-color: #d09c3c;
@@ -69,8 +84,8 @@ nav{
 #homebut:hover{
     width: 250px;
     /*background-color: #eca420;*/
-    background-color: #ffffff;
-    color: #d09c3c;
+    background-color: #d5a636;
+    color: #ffffff;
 }
 
 #image1{
