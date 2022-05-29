@@ -28,7 +28,13 @@ def booms():
 def arena():
     return render_template("arena.html")
 
+@app.route('/login')
+def login():
+    return render_template("login_html")
+
+
 
 if __name__ == "__main__":
     app.run(debug = True)
 
+#

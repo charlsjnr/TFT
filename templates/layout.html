@@ -9,11 +9,20 @@
 
     <body>
         <header>   
-            <div>
-                <a id = "titlebut" href = "{{url_for('home')}}">
-                    6.5 TACTIPEDIA
-                </a>
-            </div>
+            <a id = "titlebut" href = "{{url_for('home')}}">
+                6.5 TACTIPEDIA
+            </a>
+            <div id = logins>
+            <a href="{{url_for('login')}}">
+                login
+            </a>
+            <a>
+                |  
+            </a>
+            <a href="{{url_for('login')}}">
+                sign up
+            </a>
+        </div>
         </header>
     
         <nav>
