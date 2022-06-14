@@ -37,10 +37,18 @@ nav{
     height: 45px;
     position: sticky;
     top: 75px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
+
+li {
+    display: inline;
+  }
 
 #nav{
     margin:auto;
+    font-size: larger;
 }
 
 #title{

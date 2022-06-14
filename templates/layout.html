@@ -10,7 +10,7 @@
     <body>
         <header>   
             <a id = "titlebut" href = "{{url_for('home')}}">
-                6.5 TACTIPEDIA
+                7.0 TACTIPEDIA
             </a>
             <div id = logins>
             <a href="{{url_for('login')}}">
@@ -26,7 +26,10 @@
         </header>
     
         <nav>
-            <h2 id = "nav">nav</h2>
+            <li><a href="default.asp" id = "nav">Champions</a></li>
+            <li><a href="news.asp" id = "nav">Little Legends</a></li>
+            <li><a href="contact.asp" id = "nav">Arenas</a></li>
+            <li><a href="about.asp" id = "nav">Synergies</a></li>
         </nav>
 
         {%block content%}{%endblock%}
