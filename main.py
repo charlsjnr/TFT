@@ -1,7 +1,15 @@
 #imports Flask to activate website
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+import models
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = "sus"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
+db = SQLAlchemy(app)
 
 #creates route for home page
 @app.route('/')
@@ -14,15 +22,16 @@ def directory():
 
 @app.route('/champions')
 def champions():
-    return render_template("champions.html")
+    champions = models.Champion.query.all()
+    return render_template("champions.html", champions=champions)
 
 @app.route('/little_legends')
 def legends():
     return render_template("legends.html")
 
-@app.route('/booms')
+@app.route('/synergies')
 def booms():
-    return render_template("booms.html")
+    return render_template("synergies.html")
 
 @app.route('/arena')
 def arena():

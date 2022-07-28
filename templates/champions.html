@@ -1,6 +1,20 @@
 {%extends "layout.html"%}
 {%block content%}
 <main> 
-    
+    <div class="bakas">
+    {% for champions in champions%}
+    <div class="baka" style="background-image: url('/static/images/{{champions.img}}.png');">
+    <p>{{champions.name}}</p>
+    COST: {{champions.cost}}
+    CHAMPION DESCIPTION: {{champions.description}}
+    {% for synergy in champions.synergies%}
+    Synergy:
+    {{synergy.name}}
+    {{synergy.description}}
+    {% endfor %}
+</div>
+    {% endfor %}
+</div>
+
 </main>
 {%endblock%}

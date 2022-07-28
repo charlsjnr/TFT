@@ -1,53 +1,27 @@
 from sqlalchemy import ForeignKey
 from main import db
+from sqlalchemy.orm import declarative_base, relationship
 
-class Booms(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text)
-    gif = db.Column(db.Text)
-    image = db.Column(db.Text)
+ChampionSynergy = db.Table('ChampionSynergy', db.Model.metadata,
+    db.Column('cid', db.Integer, db.ForeignKey('Champion.id')),
+    db.Column('sid', db.Integer, db.ForeignKey('Synergy.id')))
 
 class Champion(db.Model):
+    __tablename__ = 'Champion'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text)
     description = db.Column(db.Text)
-    synergy_id = db.Column(db.Integer, ForeignKey('Synergy.id'))
-    cost_id = db.Column(db.Integer, ForeignKey('Cost.id'))
-
-class Cost(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
     cost = db.Column(db.Integer)
 
-class Legends(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text)
-    description = db.Column(db.Text)
-    rarity_id = db.Column(db.Integer, ForeignKey('Rarity.id'))
-    race_id = db.Column(db.Text)
-    skin_id = db.Column(db.Integer, ForeignKey('Skin.id'))
-
-class Maps(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text)
-    image = db.Column(db.Text)
-
-class Race(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text)
-
-class Rarity(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text)
-
-class Skin(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text)
+    synergies = db.relationship('Synergy', secondary=ChampionSynergy, back_populates='champions')
 
 class Synergy(db.Model):
+    __tablename__ = 'Synergy'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Text)
     description = db.Column(db.Text)
     image = db.Column(db.Text)
 
+    champions = db.relationship('Champion', secondary=ChampionSynergy, back_populates='synergies')
 
     
