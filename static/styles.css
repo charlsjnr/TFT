@@ -5,6 +5,8 @@
 
 body {
     background-color: #4c3e79;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: blue;
     font-family: 'Courier New', Courier, monospace;
     margin: 0%;
@@ -143,9 +145,23 @@ li a:hover{
     transition-duration: 4s;
 }
 
-.bakas {
+#bakas {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto;
     gap: 10px;
+}
+
+.baka {
+    border-radius: 10px;
+    border-color: #000000;
+    border-width: 4px; 
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #ffffff;
     padding: 10px;
+    border-style: solid;
+}
+
+.info {
+    position: relative;
+    bottom: -100px;
 }

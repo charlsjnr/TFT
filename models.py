@@ -12,6 +12,8 @@ class Champion(db.Model):
     name = db.Column(db.Text)
     description = db.Column(db.Text)
     cost = db.Column(db.Integer)
+    img = db.Column(db.Text)
+
 
     synergies = db.relationship('Synergy', secondary=ChampionSynergy, back_populates='champions')
 
