@@ -43,7 +43,6 @@ nav{
     margin: 0;
     padding: 0;
     overflow: hidden;
-    list-style-type: none;
 }
 
 li {
@@ -149,6 +148,7 @@ li a:hover{
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 10px;
+    padding: 20px;
 }
 
 .baka {
@@ -159,6 +159,16 @@ li a:hover{
     color: #ffffff;
     padding: 10px;
     border-style: solid;
+    text-decoration: none;
+    background-size: 600px; 
+    width: 500px; 
+    height: 250px;
+    transition: 0.7s;
+}
+
+.baka:hover{
+    background-size: 750px;
+    width: 600px;
 }
 
 .info {

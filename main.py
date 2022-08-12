@@ -25,7 +25,12 @@ def champions():
     champions = models.Champion.query.all()
     return render_template("champions.html", champions=champions)
 
-@app.route('/little_legends')
+@app.route('/champions/<string:id>')
+def championid(id):
+    champions = models.Champion.query.filter_by(id=id).first()
+    return render_template("championid.html", champions=champions)
+
+@app.route('/items')
 def legends():
     return render_template("legends.html")
 

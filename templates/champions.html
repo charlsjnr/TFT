@@ -3,20 +3,20 @@
 <main> 
     <div id ="bakas">
         {% for champions in champions%}
-        <div class="baka" style="background-image: url('/static/images/{{champions.img}}.png'); background-size: 600px; width: 500px; height: 250px;">
-            <h1>{{champions.name}}</h1>
-            <div class = "info">
-                COST: {{champions.cost}}
-                <br>
-                <!--CHAMPION DESCIPTION: {{champions.description}}-->
-                Synergy: {% for synergy in champions.synergies%}
-                {{synergy.name}}
-                <br>
-                &emsp;&emsp;&emsp;&ensp;
-                <!--{{synergy.description}}-->
-                {% endfor %}
-            </div>
-        </div>
+        <a href = "{{url_for('championid', id=champions.id)}}" class="baka" style="background-image: url('/static/images/{{champions.img}}.png');">
+                <h1>{{champions.name}}</h1>
+                <div class = "info">
+                    COST: {{champions.cost}}
+                    <br>
+                    <!--CHAMPION DESCIPTION: {{champions.description}}-->
+                    Synergy: {% for synergy in champions.synergies%}
+                    {{synergy.name}}
+                    <br>
+                    &emsp;&emsp;&emsp;&ensp;
+                    <!--{{synergy.description}}-->
+                    {% endfor %}
+                </div>
+            </a>
         {% endfor %}
 </div>
 
