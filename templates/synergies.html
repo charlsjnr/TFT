@@ -1,6 +1,18 @@
 {%extends "layout.html"%}
 {%block content%}
 <main> 
-    
+    <div id ="bakas">
+        {% for synergies in synergies%}
+        <a href = "{{url_for('championid', id=synergies.id)}}" class="baka" style="background-image: url('/static/images/{{synergies.image}}.png');">
+                <h1>{{synergies.name}}</h1>
+                <div class = "info">
+
+                    Champions: {% for champion in synergies.champions%}
+                    {{champion.name}}
+                    
+                    {% endfor %}
+                </div>
+            </a>
+        {% endfor %}
 </main>
 {%endblock%}

@@ -35,8 +35,9 @@ def legends():
     return render_template("legends.html")
 
 @app.route('/synergies')
-def booms():
-    return render_template("synergies.html")
+def synergies():
+    synergies = models.Synergy.query.all()
+    return render_template("synergies.html", synergies=synergies)
 
 @app.route('/arena')
 def arena():

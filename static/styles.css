@@ -133,10 +133,13 @@ li a:hover{
 }
 
 #image1{
+    content: url("images/Augment.png/");
+    width: 400px;
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: 200px;
+    left: 100px; 
     transition-duration: 4s;
+
 }
 
 #image1:hover{
