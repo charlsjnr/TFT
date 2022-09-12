@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends 'layout.html' %}
+{% block content %}
+<div class="LF">
+  <!-- <center> -->
+    <h1>Login</h1>
+  <!-- </center> -->
+    <form class="login" method="post">
+    {{form.csrf_token}}
+    {{form.email()}} <br>
+    {{form.password()}} <br>
+    <div class="rmb">
+      {{form.remember_me()}}
+    </div>
+    <div class="rmt">
+      <h2>{{form.remember_me.label}}</h2>
+    </div>
+    <br> <input type="submit" value="Login" class="button">
+  </form>
+  <a class="rl" href="/register">Don't have an account yet?
+     Sign Up</a>
+    {% with messages = get_flashed_messages() %}
+     {% if messages %}
+        {% for message in messages %}
+           {{ message }}
+        {% endfor %}
+     {% endif %}
+  {% endwith %}
+</div>
+{% endblock %}

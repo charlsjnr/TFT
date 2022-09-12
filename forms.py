@@ -1,11 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Optional, ValidationError, Length, EqualTo
-import models
 from datetime import datetime
 
 class RegisterForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired(), Length(max=36)], render_kw={"placeholder": "username"})
     email = StringField('Email', validators=[DataRequired(), Length(max=256)], render_kw={"placeholder": "email"})
     password = PasswordField('Password', validators=[DataRequired(), Length(max=36)], render_kw={"placeholder": "Password"})
     # makes sure 2nd password is same as 1st password

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends 'layout.html' %}
+{% block content %}
+<div class="RF">
+  <center>
+    <h1>Register</h1>
+  </center>
+
+  <form class="register" method="post">
+    {{ form.csrf_token }}
+    {{form.email}} <br>
+    {{form.password}} <br>
+    {{form.password2}} <br>
+    <input type="submit" value="Register" class="button">
+  </form>
+  {% with messages = get_flashed_messages() %}
+     {% if messages %}
+        {% for message in messages %}
+          <div class="flash_message">
+            {{ message }}
+          </div>
+        {% endfor %}
+     {% endif %}
+  {% endwith %}
+  <a class="rl" href="/login">Already a user? Login</a>
+</div>
+
+
+{% endblock %}
+Footer
+© 2022 GitHub, Inc.
