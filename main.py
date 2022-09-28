@@ -45,11 +45,6 @@ def championid(id):
     champions = models.Champion.query.filter_by(id=id).first()
     return render_template("championid.html", champions=champions)
 
-#creates route for items
-@app.route('/items')
-def legends():
-    return render_template("legends.html")
-
 #creates route for synergies
 @app.route('/synergies')
 def synergies():
