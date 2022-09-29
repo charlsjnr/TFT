@@ -39,11 +39,7 @@ def champions():
 @app.route('/champions/<int:id>')
 def championid(id):
     #query to get champion where id = id
-<<<<<<< HEAD
     champions = models.Champion.query.filter_by(id=id).first_or_404()
-=======
-    champions = models.Champion.query.filter_by(id=id).first()
->>>>>>> 1ed783b49ff0255737967faa8ba1d8a0a20e7edc
     if current_user.is_authenticated:
         user = models.User.query.filter_by(id=current_user.id).first()
     else:
@@ -178,8 +174,4 @@ def error401(error):
     return render_template("401.html")
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     app.run(debug = False)
-=======
-    app.run(debug = True)
->>>>>>> 1ed783b49ff0255737967faa8ba1d8a0a20e7edc
