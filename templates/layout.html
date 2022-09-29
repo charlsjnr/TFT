@@ -2,14 +2,14 @@
 <html>
     <head>
         <title> My Site</title>
-        <link rel="icon" type="image/x-icon" href="/static/images/TFTICON.png">        
+        <link rel="icon" type="image/x-icon" href="/static/images/TFTICON.png">
         <link rel = "stylesheet" href = "/static/styles.css">
     </head>
 
 
 
     <body>
-        <header>   
+        <header>
             <a id = "titlebut" href = "{{url_for('home')}}">
                 7.0 TACTIPEDIA
             </a>
@@ -19,7 +19,7 @@
                 login
             </a>
             <a>
-                |  
+                |
             </a>
             <a href="{{url_for('register')}}">
                 sign up
@@ -33,13 +33,14 @@
             {% endif %}
         </div>
         </header>
-    
+
         <nav>
             <li><a href="/champions"v>Champions</a></li>
             <li><a href="/synergies" id = "nav">Synergies</a></li>
+            <li><a href="/favourites" id = "nav">Favourite Champions</a></li>
         </nav>
 
         {%block content%}{%endblock%}
-        
+
     </body>
 </html>

@@ -1,19 +1,19 @@
 {%extends "layout.html"%}
 {%block content%}
-
-<div class="baka" style="background-image: url('/static/images/{{synergies.img}}.png');">
+<div class="column side"></div>
+<div class="column middle" style="color:white;background-color:black;">
+<img src="/static/images/{{synergies.image}}.png" alt="" style="width:100%">
     <h1>{{synergies.name}}</h1>
-    <div class = "info">
         COST: {{synergies.cost}}
         <br>
-        <!--CHAMPION DESCIPTION:-->
-        Synergy: {% for synergy in synergies.champions%}
-        {{synergy.name}}
-        <br>
-        &emsp;&emsp;&emsp;&ensp;
-        <!--{{synergy.description}}-->
+        {{synergies.description}}
+        <br><br>
+
+        <h2>Champions:
+          {% for champion in synergies.champions%}
+        </h2>
+        <u><a href="{{url_for('championid', id=champion.id)}}" style="text-decoration:none;color:white;">{{champion.name}}</a></u>
         {% endfor %}
-    </div>
 </div>
 
 {%endblock%}
