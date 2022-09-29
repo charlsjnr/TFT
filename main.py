@@ -26,24 +26,59 @@ def load_user(id):
 def home():
     return render_template("home.html")
 
-#creates route for the directory
-@app.route('/directory')
-def directory():
-    return render_template("directory.html")
-
-#creates route to show champions 
+#creates route to show champions
 @app.route('/champions')
 def champions():
     #query to get everything from champions table
     champions = models.Champion.query.all()
     return render_template("champions.html", champions=champions)
 
+
+
 #creates route for a champion from champions page
-@app.route('/champions/<string:id>')
+@app.route('/champions/<int:id>')
 def championid(id):
     #query to get champion where id = id
-    champions = models.Champion.query.filter_by(id=id).first()
-    return render_template("championid.html", champions=champions)
+    champions = models.Champion.query.filter_by(id=id).first_or_404()
+    if current_user.is_authenticated:
+        user = models.User.query.filter_by(id=current_user.id).first()
+    else:
+        user = None
+    return render_template("championid.html", champions=champions, user=user)
+
+
+#creates route to show favourites
+@app.route('/favourites')
+def favourites():
+    #query to get everything from champions table
+    user = models.User.query.filter_by(id=current_user.id).first_or_404()
+    return render_template("favourites.html", user=user)
+    
+# Route to add champions to favourites table
+@app.route("/favourite/<int:id>", methods=["GET", "POST"])
+@login_required  # requires user to be logged in to add favourite
+def favourite(id):
+    # Adds favourite champions by assigining current user id to user id table
+    # and adds the champion id to champions id table.
+    user = models.User.query.filter_by(id=current_user.id).first_or_404()
+    champion = models.Champion.query.filter_by(id=id).first_or_404()
+    user.champions.append(champion)
+    db.session.merge(user)
+    db.session.commit()
+    flash ("Champion added to favourites")
+    return redirect(url_for("championid", id=champion.id))
+
+# route to remove a champion from your favourites
+@app.route("/delete/<int:id>", methods=["GET", "POST"])
+@login_required
+def delete(id):
+    user = models.User.query.filter_by(id=current_user.id).first_or_404()
+    champion = models.Champion.query.filter_by(id=id).first_or_404()
+    user.champions.remove(champion)
+    db.session.merge(user)
+    db.session.commit()
+    flash ("Champion removed to favourites")
+    return redirect(url_for("championid", id=champion.id))
 
 #creates route for synergies
 @app.route('/synergies')
@@ -53,10 +88,10 @@ def synergies():
     return render_template("synergies.html", synergies=synergies)
 
 #creates route got a synergy in synergies page
-@app.route('/synergies/<string:id>')
+@app.route('/synergies/<int:id>')
 def synergiesid(id):
     #query to get synergy where id = id
-    synergies = models.Synergy.query.filter_by(id=id).first()
+    synergies = models.Synergy.query.filter_by(id=id).first_or_404()
     return render_template("synergyid.html", synergies=synergies)
 
 @app.route('/profile/<int:id>')
@@ -93,13 +128,13 @@ def register():
         # if user is already logged in it redirects them home
     form = RegisterForm()
     if form.validate_on_submit():
-        
+
         existing_email = models.User.query.filter_by(email=form.email.data).first()
         if existing_email is not None: #  checks if email is already registered
             print("this is what's up")
 
             flash ("Email already registered.", 'user')
-            
+
             return redirect('register')
             # if user's email is already used it redirects them back to the
             # register page and shows them a message saying the email is
@@ -136,8 +171,7 @@ def error500(error):
 
 @app.errorhandler(401)
 def error401(error):
-    return render_template("401.html")        
+    return render_template("401.html")
 
 if __name__ == "__main__":
-    app.run(debug = True)
-
+    app.run(debug = False)

@@ -1,19 +1,59 @@
 {%extends "layout.html"%}
 {%block content%}
-
-<div class="baka" style="background-image: url('/static/images/{{champions.img}}.png');">
+<div class="column side"></div>
+<div class="column middle" style="color:white;background-color:black;font-family: Calibri, sans-serif;">
+<img src="/static/images/{{champions.img}}.png" alt="" style="width:100%">
     <h1>{{champions.name}}</h1>
-    <div class = "info">
+    <div>
+      {% with messages = get_flashed_messages() %}
+       {% if messages %}
+          {% for message in messages %}
+             {{ message }}
+          {% endfor %}
+       {% endif %}
+    {% endwith %}
+          <!-- if user not signed in, tell them to sign in before favouriting -->
+          {% if current_user.is_anonymous %}
+            <form>
+              <input type="button" value="Add to favourites" onclick="msg()">
+            </form>
+
+            <script>
+              function msg() {
+                alert("Please sign in first to add this game to your favourites!");
+              }
+            </script>
+            <!-- else, if game hasn't been favourited show up with add button -->
+          <!-- if variable favourited has length (i.e it exists) -->
+          {% elif champions in user.champions %}
+            <div id="favourite_button">
+              <!-- have remove from favourites button -->
+              <button onclick="location.href=
+              '{{ url_for('delete', id=champions.id)}}'" type="button">
+               <h3> Remove from favourites </h3></button>
+            </div>
+            <!-- if game has been favourited, show up with remove button -->
+          {% else %}
+            <div id="favourite_button">
+              <button onclick="location.href=
+              '{{ url_for('favourite', id=champions.id)}}'" type="button">
+               <h3> Add to favourites </h3></button>
+            </div>
+          {% endif %}
+
         COST: {{champions.cost}}
         <br>
-        <!--CHAMPION DESCIPTION: {{champions.description}}-->
-        Synergy: {% for synergy in champions.synergies%}
+        {{champions.description}}
+        <br><br>
+        {% for synergy in champions.synergies%}
+        <h2>Synergy:
         {{synergy.name}}
+        </h2>
         <br>
-        &emsp;&emsp;&emsp;&ensp;
-        <!--{{synergy.description}}-->
+        {{synergy.description}}
         {% endfor %}
-    </div>
 </div>
+
+
 
 {%endblock%}

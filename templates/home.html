@@ -1,10 +1,10 @@
 {%extends "layout.html"%}
 {%block content%}
-<main> 
+<main>
     <h1 id = "title">7.0 <br> TACTIPEDIA</h1>
-    <a id = "homebut" href = "{{url_for('directory')}}">Explore</a>
+    <a id = "homebut" href = "{{url_for('champions')}}">Explore</a>
     {% if current_user.is_authenticated %}
-    SUGMA {{current_user.email}}
+    WELCOME {{current_user.email}}
     {%endif%}
 </main>
 

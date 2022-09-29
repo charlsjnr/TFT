@@ -8,6 +8,12 @@ ChampionSynergy = db.Table('ChampionSynergy', db.Model.metadata,
     db.Column('cid', db.Integer, db.ForeignKey('Champion.id')),
     db.Column('sid', db.Integer, db.ForeignKey('Synergy.id')))
 
+# Users and Champions association table many-many
+UserChampion = db.Table('UserChampion',
+    db.Column('user_id', db.Integer, db.ForeignKey('User.id')),
+    db.Column('champion_id', db.Integer, db.ForeignKey('Champion.id'))
+)
+
 class Champion(db.Model):
     __tablename__ = 'Champion'
     id = db.Column(db.Integer, primary_key=True)
@@ -15,7 +21,8 @@ class Champion(db.Model):
     description = db.Column(db.Text)
     cost = db.Column(db.Integer)
     img = db.Column(db.Text)
-
+    users = db.relationship('User', secondary='UserChampion',
+                              back_populates='champions')
 
     synergies = db.relationship('Synergy', secondary=ChampionSynergy, back_populates='champions')
 
@@ -33,7 +40,8 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     email = db.Column(db.Text, unique=True)
     password_hash = db.Column(db.Text, nullable=False)
-    
+    champions = db.relationship('Champion', secondary='UserChampion',
+                             back_populates='users')
     def set_password(self, password_hash):
         self.password_hash = generate_password_hash(password_hash)
 
