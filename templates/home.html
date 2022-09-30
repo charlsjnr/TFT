@@ -3,9 +3,18 @@
 <main>
     <h1 id = "title">7.0 <br> TACTIPEDIA</h1>
     <a id = "homebut" href = "{{url_for('champions')}}">Explore</a>
+    <center>
     {% if current_user.is_authenticated %}
-    WELCOME {{current_user.email}}
+    <h1>WELCOME {{current_user.email}}</h1>
     {%endif%}
+    {% with messages = get_flashed_messages() %}
+     {% if messages %}
+        {% for message in messages %}
+           <h1>{{ message }}</h1>
+        {% endfor %}
+     {% endif %}
+  {% endwith %}
+  </center>
 </main>
 
 

@@ -28,26 +28,20 @@
 
             {% if current_user.is_authenticated%}
             <a href="{{url_for('logout')}}">
-                Log OUT
+                Log Out
             </a>
             {% endif %}
         </div>
         </header>
-        {% if not current_user.is_authenticated%}
-        <nav>
-            <li><a href="/champions"v>Champions</a></li>
-            <li><a href="/synergies" id = "nav">Synergies</a></li>
-            <li><a href="/favourites" id = "nav">Favourite Champions</a></li>
-        </nav>
-        {% endif %}
 
-        {% if current_user.is_authenticated%}
         <nav>
-            <li><a href="/champions"v>Champions</a></li>
+            <li><a href="/champions">Champions</a></li>
             <li><a href="/synergies" id = "nav">Synergies</a></li>
-            <li><a href="/favourites" id = "nav">Favourite Champions</a></li>
+              {% if current_user.is_authenticated%}
+            <li><a href="/team" id = "nav">My Team</a></li>
+                {% endif %}
         </nav>
-        {% endif %}
+
 
         {%block content%}{%endblock%}
 

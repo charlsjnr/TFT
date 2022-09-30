@@ -4,7 +4,7 @@
 <div class="RF">
   <center>
     <h1>Register</h1>
-  </center>
+
 
   <form class="register" method="post">
     {{ form.csrf_token }}
@@ -13,6 +13,16 @@
     {{form.password2}} <br>
     <input type="submit" value="Register" class="button">
   </form>
+{% for error in form.email.errors %}
+  <span style="color: red;">{{ error }}</span>
+{% endfor %}
+{% for error in form.password.errors %}
+  <span style="color: red;">{{ error }}</span>
+{% endfor %}
+{% for error in form.password2.errors %}
+  <span style="color: red;">{{ error }}</span>
+{% endfor %}
+
   {% with messages = get_flashed_messages() %}
      {% if messages %}
         {% for message in messages %}
@@ -24,7 +34,7 @@
   {% endwith %}
   <a class="rl" href="/login">Already a user? Login</a>
 </div>
-
+</center>
 
 {% endblock %}
 Footer
